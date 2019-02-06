@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<screen require-authentication="anonymous-all"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd">
+
+    <always-actions>
+        <script>
+            def response = ec.web.response
+            response.addHeader('Access-Control-Allow-Origin', '*')
+            response.addHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
+            response.addHeader('Access-Control-Allow-Headers', 'Content-Type,api_key')
+            response.addHeader('Cache-Control', 'no-cache')
+        </script>
+    </always-actions>
+
+    <transition name="createApplicationForm" method="post" require-session-token="false">
+        <!-- <service-call name="ExampleServices.create#CCOSApplication"/> -->
+         <service-call name="mantle.party.PartyServices.create#PersonCustomer" in-map="context" out-map="context"/>
+        <default-response url="."/>
+    </transition>
+
+     <actions>
+    </actions>
+    
+<!-- 
+    <widgets>
+    <label type="h1" text="Credit Application"/>
+    <form-single name="CreditApp" transition="createApplicationForm">
+        <field name="donationAmount"><default-field><text-line/></default-field></field>
+        <field name="one -TimePayment"><default-field><text-line/></default-field></field>
+        <field name="firstName"><default-field><text-line/></default-field></field>
+        <field name="middleName"><default-field><text-line/></default-field></field>
+        <field name="lastName"><default-field><text-line/></default-field></field>
+        <field name="e-mail"><default-field><text-line/></default-field></field>
+        <field name="address1"><default-field><text-line/></default-field></field>
+        <field name="city"><default-field><text-line/></default-field></field>
+        <field name="stateProvinceGeoId"><default-field><text-line/></default-field></field>
+        <field name="postalCode"><default-field><text-line/></default-field></field>
+        <field name="submitButton"><default-field 
+        title="Submit"><submit/></default-field></field>
+    </form-single>
+
+        <render-mode>
+            <text type="html" location="component://CreditCardExample/screen/CreditCardApp/Stripe.html"/>
+        
+        </render-mode>
+    </widgets> -->
+</screen>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entities>
+    <entity entity-name="CreditApp" package-name="CreditCardExample">
+       <field name="firstName" type="id" is-pk="true"/>
+       <field name="description" type="text-long"/>
+    </entity>
+</entities>
